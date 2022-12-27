@@ -1,9 +1,19 @@
 import express from 'express';
 import sequelize from './database';
 
+import User from './models/user';
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+app.get('/api', (_req, res) => {
+  res.send('hello');
+});
+
+app.get('/', async (_req, res) => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  res.json({ users });
+});
 
 const start = async () => {
   try {

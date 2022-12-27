@@ -13,9 +13,9 @@ import User from './user';
 
 @Table({ timestamps: true })
 class Bio extends Model<Bio> {
-  @Column(DataType.UUID)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column(DataType.UUID)
   id: string;
 
   @Column

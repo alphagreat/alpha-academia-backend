@@ -5,19 +5,20 @@ import {
   Column,
   PrimaryKey,
   Default,
-  HasOne
+//   HasOne
 } from 'sequelize-typescript';
 
-import Bio from './bio';
+// import Bio from './bio';
 
 @Table({
   timestamps: true,
-  paranoid: true
+  paranoid: true,
+  underscored: true
 })
 class User extends Model<User> {
-  @Column(DataType.UUID)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Default(DataType.UUIDV4)
+    @Column(DataType.UUID)
   id: string;
 
   @Column({ allowNull: false })
@@ -35,12 +36,12 @@ class User extends Model<User> {
   @Column({ allowNull: false })
   password: string;
 
-  @Column({ allowNull: false })
   @Default(0)
+  @Column({ allowNull: false })
   status: number;
 
-  @HasOne(() => Bio, 'userId')
-  bio: Bio;
+//   @HasOne(() => Bio, 'userId')
+//   bio: Bio;
 }
 
 export default User;
