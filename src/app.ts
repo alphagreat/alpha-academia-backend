@@ -1,22 +1,13 @@
 import express from 'express';
 import sequelize from './database';
-import { UserSerive } from './services/user';
+import mainRouter from './routets';
 
 const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', async (_req, res) => {
-  const users = await UserSerive.index();
-  res.json(users);
-});
-
-app.post('/', async (req, res) => {
-  console.log(req.body);
-  const user = await UserSerive.create(req.body);
-  return res.json(user);
-});
+app.use('/alpha-academea/api/v1', mainRouter);
 
 const start = async () => {
   try {
@@ -29,5 +20,6 @@ const start = async () => {
     console.error('Unable to connect to the database:', error);
   }
 };
+
 
 start();

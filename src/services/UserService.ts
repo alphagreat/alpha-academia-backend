@@ -1,7 +1,7 @@
 import Bio from '../models/bio';
 import User from '../models/user';
 
-export class UserSerive {
+export class UserService {
   static async index(): Promise<User[]> {
     const users = await User.findAll<User>({
       include: Bio,
