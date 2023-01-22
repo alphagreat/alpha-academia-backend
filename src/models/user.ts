@@ -1,3 +1,5 @@
+import { Optional } from 'sequelize';
+
 import {
   Table,
   Model,
@@ -5,20 +7,33 @@ import {
   Column,
   PrimaryKey,
   Default,
-//   HasOne
+  HasOne
 } from 'sequelize-typescript';
 
-// import Bio from './bio';
+import Bio from './bio';
+
+interface UserAttributes {
+  id: string;
+  firstName: string;
+  lastName: string;
+  otherNames: string;
+  email: string;
+  password: string;
+  status: number;
+}
+
+interface CreateUserAttributes
+  extends Optional<UserAttributes, 'id' | 'otherNames'> {}
 
 @Table({
   timestamps: true,
   paranoid: true,
   underscored: true
 })
-class User extends Model<User> {
-    @PrimaryKey
-    @Default(DataType.UUIDV4)
-    @Column(DataType.UUID)
+class User extends Model<UserAttributes, CreateUserAttributes> {
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
   id: string;
 
   @Column({ allowNull: false })
@@ -27,7 +42,7 @@ class User extends Model<User> {
   @Column({ allowNull: false })
   lastName: string;
 
-  @Column({ allowNull: false })
+  @Column
   otherNames: string;
 
   @Column({ allowNull: false })
@@ -40,8 +55,11 @@ class User extends Model<User> {
   @Column({ allowNull: false })
   status: number;
 
-//   @HasOne(() => Bio, 'userId')
-//   bio: Bio;
+  @Column({ allowNull: false, type: DataType.INTEGER })
+  userTypeId: number;
+
+  @HasOne(() => Bio, 'userId')
+  bio: Bio;
 }
 
 export default User;

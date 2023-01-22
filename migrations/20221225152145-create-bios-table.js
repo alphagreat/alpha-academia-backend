@@ -16,11 +16,12 @@ module.exports = {
         allowNull: false,
         references: {
           model: {
-            tableName: 'users',
+            tableName: 'users'
           },
           key: 'id'
         }
       },
+      gender: DataTypes.INTEGER,
       country_of_birth: DataTypes.STRING,
       current_nationality: DataTypes.STRING,
       date_of_birth: DataTypes.DATE,

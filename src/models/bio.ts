@@ -1,3 +1,4 @@
+import { Optional } from 'sequelize';
 import {
   Model,
   BelongsTo,
@@ -6,16 +7,40 @@ import {
   Default,
   ForeignKey,
   PrimaryKey,
-  Table
+  Table,
+  AllowNull
 } from 'sequelize-typescript';
 
 import User from './user';
 
-@Table({ timestamps: true })
-class Bio extends Model<Bio> {
-    @PrimaryKey
-    @Default(DataType.UUIDV4)
-    @Column(DataType.UUID)
+interface BioAttributes {
+  id: string;
+  countryOfBirth: string;
+  currentNationality: string;
+  gender: number;
+  placeOfResidence: string;
+  userId: string;
+  dateOfBirth: Date;
+  imageUrl: string;
+}
+
+interface BioCreateAttributes
+  extends Optional<
+    BioAttributes,
+    | 'id'
+    | 'countryOfBirth'
+    | 'currentNationality'
+    | 'gender'
+    | 'placeOfResidence'
+    | 'imageUrl'
+    | 'dateOfBirth'
+  > {}
+
+@Table({ timestamps: true, tableName: 'bios', underscored: true })
+class Bio extends Model<BioAttributes, BioCreateAttributes> {
+  @Default(DataType.UUIDV4)
+  @PrimaryKey
+  @Column(DataType.UUID)
   id: string;
 
   @Column
@@ -28,15 +53,16 @@ class Bio extends Model<Bio> {
   gender: number;
 
   @Column
-  dateOfBirth: Date;
-
-  @Column
   placeOfResidence: string;
 
   @Column
   imageUrl: string;
 
+  @Column
+  dateOfBirth: string;
+
   @ForeignKey(() => User)
+  @AllowNull(false)
   @Column(DataType.UUID)
   userId: string;
 

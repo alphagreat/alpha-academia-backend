@@ -19,10 +19,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      other_names: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
+      other_names: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
         allowNull: false
@@ -35,6 +32,10 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
+      },
+      user_type_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
       },
       created_at: DataTypes.DATE,
       updated_at: DataTypes.DATE,

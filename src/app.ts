@@ -1,18 +1,21 @@
 import express from 'express';
 import sequelize from './database';
+import { UserSerive } from './services/user';
 
-import User from './models/user';
 const app = express();
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/api', (_req, res) => {
-  res.send('hello');
+app.get('/', async (_req, res) => {
+  const users = await UserSerive.index();
+  res.json(users);
 });
 
-app.get('/', async (_req, res) => {
-  const users = await User.findAll({ attributes: { exclude: ['password'] } });
-  res.json({ users });
+app.post('/', async (req, res) => {
+  console.log(req.body);
+  const user = await UserSerive.create(req.body);
+  return res.json(user);
 });
 
 const start = async () => {
