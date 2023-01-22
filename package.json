@@ -10,7 +10,7 @@
     "lint": "npx eslint . --ext .ts",
     "prettier": "prettier --config .prettierrc src/**/*.ts --write",
     "devStart": "nodemon ./src/app.ts",
-    "start": "node ./build/app.js"
+    "start": "npm run build && node build/app.js"
   },
   "repository": {
     "type": "git",
