@@ -11,6 +11,9 @@ export class UserService {
     return users;
   }
   static async create(user: User): Promise<User> {
+
+    //TODO: VALIDATE 
+
     const createdUser = await User.create<User>(user);
     await Bio.create({ userId: createdUser.id });
 
