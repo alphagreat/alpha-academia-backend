@@ -17,7 +17,7 @@ interface BioAttributes {
   id: string;
   countryOfBirth: string;
   currentNationality: string;
-  gender: number;
+  gender: string;
   placeOfResidence: string;
   userId: string;
   dateOfBirth: Date;
@@ -50,7 +50,7 @@ class Bio extends Model<BioAttributes, BioCreateAttributes> {
   currentNationality: string;
 
   @Column
-  gender: number;
+  gender: string;
 
   @Column
   placeOfResidence: string;
@@ -58,7 +58,7 @@ class Bio extends Model<BioAttributes, BioCreateAttributes> {
   @Column
   imageUrl: string;
 
-  @Column
+  @Column(DataType.DATEONLY)
   dateOfBirth: string;
 
   @ForeignKey(() => User)
