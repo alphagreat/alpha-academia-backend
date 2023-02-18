@@ -21,10 +21,10 @@ module.exports = {
           key: 'id'
         }
       },
-      gender: DataTypes.INTEGER,
+      gender: DataTypes.STRING,
       country_of_birth: DataTypes.STRING,
       current_nationality: DataTypes.STRING,
-      date_of_birth: DataTypes.DATE,
+      date_of_birth: DataTypes.DATEONLY,
       place_of_residence: DataTypes.STRING,
       image_url: DataTypes.STRING,
       created_at: DataTypes.DATE,
