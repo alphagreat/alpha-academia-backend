@@ -1,7 +1,9 @@
 import Bio from '../models/bio';
+import { bioSchema } from '../utils/validations';
 
 export class BioService {
   static async update(userId: string, bio: Bio): Promise<number> {
+    await bioSchema.validateAsync(bio, { abortEarly: false });
     const updatedBio = await Bio.update(
       {
         gender: bio.gender,

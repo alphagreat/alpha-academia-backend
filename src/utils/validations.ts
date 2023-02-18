@@ -36,4 +36,12 @@ const userSchema = Joi.object({
     })
 });
 
-export { userSchema };
+const bioSchema = Joi.object({
+  countryOfBirth: Joi.string().allow('').alphanum(),
+  gender: Joi.string().allow('').valid('', 'M', 'F', 'O'),
+  currentNationality: Joi.string().allow('').alphanum(),
+  placeOfResidence: Joi.string().allow('').alphanum(),
+  dateOfBirth: Joi.date().allow('')
+});
+
+export { userSchema, bioSchema };
