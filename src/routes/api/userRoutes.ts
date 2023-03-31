@@ -9,6 +9,11 @@ userRoutes
     /* 
         #swagger.tags = ['Users'] 
         #swagger.path = '/users'
+
+        #swagger.responses[200] = {description: 'success'}
+        #swagger.responses[500] = {
+            schema: { $ref: '#/definitions/InternalServerError' }
+        }
     */
     usersController.index
   )
@@ -16,6 +21,13 @@ userRoutes
     /* 
         #swagger.tags = ['Users'] 
         #swagger.path = '/users'
+
+        #swagger.responses[400] = {
+            schema: { $ref: '#/definitions/BadRequest' }
+        }
+        #swagger.responses[500] = {
+            schema: { $ref: '#/definitions/InternalServerError' }
+        }
     */
     usersController.create
   );

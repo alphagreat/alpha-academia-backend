@@ -9,7 +9,18 @@ bioRoutes.route('/:userId').put(
         #swagger.path = '/bios/{userId}'
         #swagger.parameters['userId'] = { description: 'The id of the user' }
 
-        #swagger.parameters['gender'] = { description: 'The gender of the user', in: 'body' }
+        #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Details of user bio',
+                schema: { $ref: '#/definitions/UpdateUserBio' }
+        }
+        
+        #swagger.responses[500] = {
+            schema: { $ref: '#/definitions/InternalServerError' }
+        }
+        #swagger.responses[400] = {
+            schema: { $ref: '#/definitions/BadRequest' }
+        }
     */
   bioController.update
 );

@@ -10,11 +10,11 @@ const errorHandlerMiddleware = (
   res: Response,
   _next: NextFunction
 ): Response => {
-  console.log(err);
+  
   if (err instanceof ValidationError) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ status: 'error', details: err.details });
+      .json({ status: 'bad request', details: err.details });
   }
 
   if (err instanceof CustomError) {
