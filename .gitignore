@@ -3,3 +3,4 @@ package-lock.json
 .env
 build
 package-lock.json
+swagger-output.json
